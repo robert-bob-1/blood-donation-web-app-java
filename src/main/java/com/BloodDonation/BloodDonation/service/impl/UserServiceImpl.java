@@ -44,4 +44,13 @@ public class UserServiceImpl implements UserService {
         else
             return null;
     }
+
+    @Override
+    public User loginUser(String email, String password) {
+        Optional<User> foundUser = userRepository.findByEmailAndPassword(email, password);
+        if(foundUser.isPresent())
+            return (foundUser.get());
+        else
+            return null;
+    }
 }

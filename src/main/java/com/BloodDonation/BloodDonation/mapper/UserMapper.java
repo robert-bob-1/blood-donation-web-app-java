@@ -14,6 +14,12 @@ public class UserMapper {
         user.password = dto.password;
         return user;
     }
+//    public User toUserFromDTO(UserDTO dto){
+//        User user =  new User();
+//        user.email = dto.email;
+//        user.password = dto.password;
+//        return user;
+//    }
 
     public UserDTO toUserDTO(User user){
         UserDTO dto = new UserDTO();
