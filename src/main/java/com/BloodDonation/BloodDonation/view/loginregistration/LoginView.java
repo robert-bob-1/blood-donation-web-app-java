@@ -4,6 +4,7 @@ import com.BloodDonation.BloodDonation.entity.User;
 import com.BloodDonation.BloodDonation.entity.UserType;
 import com.BloodDonation.BloodDonation.mapper.UserMapper;
 import com.BloodDonation.BloodDonation.service.UserService;
+import com.BloodDonation.BloodDonation.view.loginregistration.userviews.admin.AdminMainView;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
@@ -13,6 +14,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouteParameters;
 
 import java.util.Optional;
 
@@ -45,12 +47,13 @@ public class LoginView extends VerticalLayout {
                 login.setError(true);
             else{
                 switch (user.userType) {
-                    case ("admin"):
+                    case ("admin") -> {
                         System.out.println("Admin logged in");
-                        UI.getCurrent().navigate(HomeView.class, new RouteParameters("userID", String.valueOf(id)));
-                        break;
+                        UI.getCurrent().navigate(AdminMainView.class, new RouteParameters("userID", String.valueOf(user.uuid)));
+                    }
                     case ("doctor") -> System.out.println("Doctor logged in");
                     case ("donor") -> System.out.println("Donor logged in");
+
 
 //                   UI.getCurrent().navigate(HomeView.class, new RouteParameters("userID", String.valueOf(id)));
                     default -> System.out.println("not right");

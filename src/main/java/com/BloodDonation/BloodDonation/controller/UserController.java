@@ -39,18 +39,18 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/user")
-    ResponseEntity<UserDTO> registerUser(@RequestBody UserCreateDTO dto){
-        UserDTO registeredUser = userService.registerUserDTO(dto);
-        return ResponseEntity.ok(registeredUser);
-    }
-
-    @GetMapping("/user/{email}")
-    ResponseEntity<UserDTO> getUser(@PathVariable("email") String email){
-        UserDTO foundUser = userService.getUserByEmail(email);
-        if (foundUser != null)
-            return ResponseEntity.ok(foundUser);
-        else
-            return (ResponseEntity<UserDTO>) ResponseEntity.notFound();
-    }
+//    @PostMapping("/user")
+//    ResponseEntity<UserDTO> registerUser(@RequestBody UserCreateDTO dto){
+//        UserDTO registeredUser = userService.registerUserDTO(dto);
+//        return ResponseEntity.ok(registeredUser);
+//    }
+//
+//    @GetMapping("/user/{email}")
+//    ResponseEntity<UserDTO> getUser(@PathVariable("email") String email){
+//        UserDTO foundUser = userService.getUserByEmail(email);
+//        if (foundUser != null)
+//            return ResponseEntity.ok(foundUser);
+//        else
+//            return (ResponseEntity<UserDTO>) ResponseEntity.notFound();
+//    }
 }
