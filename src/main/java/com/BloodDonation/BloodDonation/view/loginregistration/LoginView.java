@@ -45,19 +45,22 @@ public class LoginView extends VerticalLayout {
                 login.setError(true);
             else{
                 switch (user.userType) {
-                    case ("admin") -> System.out.println("Admin logged in");
+                    case ("admin"):
+                        System.out.println("Admin logged in");
+                        UI.getCurrent().navigate(HomeView.class, new RouteParameters("userID", String.valueOf(id)));
+                        break;
                     case ("doctor") -> System.out.println("Doctor logged in");
                     case ("donor") -> System.out.println("Donor logged in");
 
-//                        UI.getCurrent().navigate(HomeView.class, new RouteParameters("userID", String.valueOf(id)));
+//                   UI.getCurrent().navigate(HomeView.class, new RouteParameters("userID", String.valueOf(id)));
                     default -> System.out.println("not right");
                 }
             }
         });
 
-//        registerButton.addClickListener(e -> {
-//            UI.getCurrent().navigate(RegisterView.class);
-//        });
+        registerButton.addClickListener(e -> {
+            UI.getCurrent().navigate(RegisterView.class);
+        });
 
         registerButton.setWidth("19%");
         registerButton.getStyle().set("background-color","blue");

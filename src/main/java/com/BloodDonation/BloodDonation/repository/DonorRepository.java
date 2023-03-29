@@ -1,5 +1,6 @@
 package com.BloodDonation.BloodDonation.repository;
 
+import com.BloodDonation.BloodDonation.entity.Donor;
 import com.BloodDonation.BloodDonation.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -8,10 +9,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, UUID> {
-    Optional<User> findByEmail(String email);
+public interface DonorRepository extends JpaRepository<Donor, UUID>{
 
-    Optional<User> findByEmailAndPassword(String email, String password);
+    Optional<Donor> findByEmail(String email);
 
-    //User save(User user);
 }

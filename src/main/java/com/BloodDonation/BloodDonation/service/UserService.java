@@ -7,7 +7,8 @@ import com.BloodDonation.BloodDonation.entity.User;
 import java.util.UUID;
 
 public interface UserService {
-    UserDTO registerUser(UserCreateDTO dto);
+    UserDTO registerUserDTO(UserCreateDTO dto);
+    UserDTO registerUser(User dto);
 
     UserDTO getUserById(UUID uuid);
 
