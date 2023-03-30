@@ -5,6 +5,8 @@ import com.BloodDonation.BloodDonation.entity.Admin;
 import com.BloodDonation.BloodDonation.service.AdminService;
 import com.BloodDonation.BloodDonation.view.loginregistration.userviews.admin.doctorDialogs.DeleteDoctorDialog;
 import com.BloodDonation.BloodDonation.view.loginregistration.userviews.admin.doctorDialogs.RegisterDoctorDialog;
+import com.BloodDonation.BloodDonation.view.loginregistration.userviews.admin.doctorDialogs.SeeDoctorsDialog;
+import com.BloodDonation.BloodDonation.view.loginregistration.userviews.admin.doctorDialogs.UpdateDoctorDialog;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEnterEvent;
@@ -28,8 +30,9 @@ public class AdminMainView extends VerticalLayout implements BeforeEnterObserver
     private final Button deleteDoctorButton = new Button("Delete doctor");
     private DeleteDoctorDialog deleteDoctorDialog;
     private final Button updateDoctorButton = new Button("Update doctor");
+    private UpdateDoctorDialog updateDoctorDialog;
     private final Button seeDoctorsButton = new Button("See doctors");
-
+    private SeeDoctorsDialog seeDoctorsDialog;
     //
 
     public AdminMainView(AdminService adminService) {
@@ -49,7 +52,18 @@ public class AdminMainView extends VerticalLayout implements BeforeEnterObserver
             deleteDoctorDialog.clearAll();
         });
 
-        add(registerDoctorButton, deleteDoctorButton, updateDoctorButton);
+        updateDoctorButton.addClickListener( e -> {
+            updateDoctorDialog = new UpdateDoctorDialog(admin, adminService);
+            updateDoctorDialog.open();
+            updateDoctorDialog.clearAll();
+        });
+
+        seeDoctorsButton.addClickListener( e -> {
+            seeDoctorsDialog = new SeeDoctorsDialog(admin, adminService);
+            seeDoctorsDialog.open();
+        });
+
+        add(registerDoctorButton, deleteDoctorButton, updateDoctorButton, seeDoctorsButton);
     }
 
     @Override

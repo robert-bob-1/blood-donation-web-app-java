@@ -8,6 +8,7 @@ import com.BloodDonation.BloodDonation.service.AdminService;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -34,14 +35,27 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Doctor updateDoctor(Doctor newDoctor) {
-        return null;
+    public void updateDoctor(String email, Doctor newDoctor) {
+        doctorRepository
+                .findByEmail(email)
+                .ifPresent(doctor -> {
+                    doctor.password = newDoctor.password;
+                    doctor.firstName = newDoctor.firstName;
+                    doctor.lastName = newDoctor.lastName;
+
+                    doctorRepository.save(doctor);
+                });
     }
 
     @Override
     public Admin getAdmin(UUID userID) {
         Admin admin = adminRepository.findByUuid(userID);
         return null;
+    }
+
+    @Override
+    public List<Doctor> getDoctors() {
+        return doctorRepository.findAll();
     }
 }
 

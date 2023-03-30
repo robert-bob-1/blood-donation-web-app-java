@@ -27,4 +27,28 @@ public class User {
         this.lastName = lastName;
         this.userType = userType;
     }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
 }
