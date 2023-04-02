@@ -6,6 +6,7 @@ import com.BloodDonation.BloodDonation.entity.users.Donor;
 import com.BloodDonation.BloodDonation.entity.Location;
 import com.BloodDonation.BloodDonation.repository.AppointmentRepository;
 import com.BloodDonation.BloodDonation.service.AppointmentService;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -40,5 +41,11 @@ public class AppointmentServiceImpl implements AppointmentService {
     public Appointment deleteAppointment(Appointment appointment) {
         appointmentRepository.deleteById(appointment.getId());
         return appointment;
+    }
+
+    @Override
+    @Transactional
+    public void deleteByDonor(Donor donor) {
+        appointmentRepository.deleteByUserId(donor.uuid);
     }
 }

@@ -52,6 +52,7 @@ public class DonorMainView extends VerticalLayout implements BeforeEnterObserver
         });
 
         deleteAccountButton.addClickListener( l -> {
+            appointmentService.deleteByDonor(donor);
             donorService.deleteDonor(donor.uuid);
             UI.getCurrent().navigate(LoginView.class);
         });

@@ -11,4 +11,6 @@ import java.util.UUID;
 public interface AppointmentRepository extends JpaRepository<Appointment, UUID> {
 
     ArrayList<Appointment> findByUserId(UUID uuid);
+
+    void deleteByUserId(UUID uuid);
 }

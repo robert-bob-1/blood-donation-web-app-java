@@ -13,4 +13,6 @@ public interface AppointmentService {
 
     ArrayList<Appointment> getAppointmentsByDonor(Donor donor);
     Appointment deleteAppointment(Appointment id);
+
+    void deleteByDonor(Donor donor);
 }
