@@ -4,6 +4,7 @@ import com.BloodDonation.BloodDonation.entity.users.User;
 import com.BloodDonation.BloodDonation.mapper.UserMapper;
 import com.BloodDonation.BloodDonation.service.UserService;
 import com.BloodDonation.BloodDonation.view.loginregistration.userviews.admin.AdminMainView;
+import com.BloodDonation.BloodDonation.view.loginregistration.userviews.doctor.DoctorMainView;
 import com.BloodDonation.BloodDonation.view.loginregistration.userviews.donor.DonorMainView;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -50,7 +51,7 @@ public class LoginView extends VerticalLayout {
                     }
                     case ("doctor") -> {
                         System.out.println("Doctor logged in");
-
+                        UI.getCurrent().navigate(DoctorMainView.class, new RouteParameters("userID", String.valueOf(user.uuid)));
                     }
                     case ("donor") -> {
                         System.out.println("Donor logged in");

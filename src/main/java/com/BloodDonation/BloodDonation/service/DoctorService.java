@@ -2,6 +2,8 @@ package com.BloodDonation.BloodDonation.service;
 
 import com.BloodDonation.BloodDonation.entity.users.Doctor;
 
+import java.util.UUID;
+
 public interface DoctorService {
     Doctor registerDoctor(Doctor doctor);
 
@@ -11,4 +13,5 @@ public interface DoctorService {
 
     Doctor updateDoctor(Doctor newDoctor);
 
+    Doctor getDoctorById(UUID uuid);
 }

@@ -49,4 +49,19 @@ public class AppointmentServiceImpl implements AppointmentService {
     public void deleteByDonor(Donor donor) {
         appointmentRepository.deleteByUserId(donor.uuid);
     }
+
+    @Override
+    public ArrayList<Appointment> getAppointmentsByLocation(Location location) {
+        return appointmentRepository.findByLocationId(location.getId());
+    }
+
+    @Override
+    public void validateAppointment(Appointment selectedAppointment, Doctor doctor) {
+        appointmentRepository.findById(selectedAppointment.getId())
+                .ifPresent(appointment -> {
+                    appointment.setDoctorId(doctor.getUuid());
+
+                    appointmentRepository.save(appointment);
+                });
+    }
 }

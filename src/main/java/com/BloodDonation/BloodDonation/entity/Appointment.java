@@ -26,14 +26,15 @@ public class Appointment {
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    private Location location;
 
+    @Column(name = "user_id", nullable = false)
+    private UUID userId;
+    @Column(name = "doctor_id", nullable = false)
+    private UUID doctorId;
+    @Column(name = "location_id", nullable = false)
+    private UUID locationId;
+
     @Column(name = "datetime")
     private Timestamp datetime;
-
-    public Appointment(Donor donor, Location location, String datetime) {
-//        this.donor = donor;
-//        this.location = location;
-        this.datetime = Utility.parseTimestamp(datetime);
-    }
 
     public Appointment() {
     }
@@ -46,29 +47,29 @@ public class Appointment {
         this.id = id;
     }
 
-//    public Donor getDonor() {
-//        return donor;
-//    }
-//
-//    public void setDonor(Donor donor) {
-//        this.donor = donor;
-//    }
-//
-//    public Doctor getDoctor() {
-//        return doctor;
-//    }
-//
-//    public void setDoctor(Doctor doctor) {
-//        this.doctor = doctor;
-//    }
-//
-//    public Location getLocation() {
-//        return location;
-//    }
-//
-//    public void setLocation(Location location) {
-//        this.location = location;
-//    }
+    public UUID getUserId() {
+        return userId;
+    }
+
+    public void setUserId(UUID userId) {
+        this.userId = userId;
+    }
+
+    public UUID getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(UUID doctorId) {
+        this.doctorId = doctorId;
+    }
+
+    public UUID getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(UUID locationId) {
+        this.locationId = locationId;
+    }
 
     public Timestamp getDatetime() {
         return datetime;

@@ -15,4 +15,8 @@ public interface AppointmentService {
     Appointment deleteAppointment(Appointment id);
 
     void deleteByDonor(Donor donor);
+
+    ArrayList<Appointment> getAppointmentsByLocation(Location location);
+
+    void validateAppointment(Appointment selectedAppointment, Doctor doctor);
 }
