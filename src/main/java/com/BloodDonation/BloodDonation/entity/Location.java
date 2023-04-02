@@ -18,23 +18,6 @@ public class Location {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(
-            mappedBy = "location",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<Appointment> appointments = new ArrayList<>();
-
-    public void addComment(Appointment appointment) {
-        appointments.add(appointment);
-        appointment.setLocation(this);
-    }
-
-    public void removeComment(Appointment appointment) {
-        appointments.remove(appointment);
-        appointment.setLocation(null);
-    }
-
     public UUID getId() {
         return id;
     }

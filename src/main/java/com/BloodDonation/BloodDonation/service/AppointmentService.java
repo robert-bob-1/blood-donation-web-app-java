@@ -12,6 +12,5 @@ public interface AppointmentService {
     Appointment addDoctorToAppointment(Appointment appointment, Doctor doctor);
 
     ArrayList<Appointment> getAppointmentsByDonor(Donor donor);
-
-
+    Appointment deleteAppointment(Appointment id);
 }

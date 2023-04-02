@@ -33,6 +33,12 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     public ArrayList<Appointment> getAppointmentsByDonor(Donor donor) {
-        return null;
+        return appointmentRepository.findByUserId(donor.uuid);
+    }
+
+    @Override
+    public Appointment deleteAppointment(Appointment appointment) {
+        appointmentRepository.deleteById(appointment.getId());
+        return appointment;
     }
 }

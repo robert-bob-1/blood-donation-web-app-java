@@ -7,7 +7,7 @@ import com.BloodDonation.BloodDonation.service.DonorService;
 import com.BloodDonation.BloodDonation.service.LocationService;
 import com.BloodDonation.BloodDonation.view.loginregistration.LoginView;
 import com.BloodDonation.BloodDonation.view.loginregistration.userviews.donor.dialogs.EditAccountDialog;
-import com.BloodDonation.BloodDonation.view.loginregistration.userviews.donor.dialogs.MakeAppointmentDialog;
+import com.BloodDonation.BloodDonation.view.loginregistration.userviews.donor.dialogs.AppointmentsDialog;
 import com.BloodDonation.BloodDonation.view.loginregistration.userviews.donor.dialogs.SeeLocationsDialog;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -35,8 +35,8 @@ public class DonorMainView extends VerticalLayout implements BeforeEnterObserver
     private final Button seeLocationsButton = new Button("See locations");
     private SeeLocationsDialog seeLocationsDialog;
 
-    private final Button makeAppointmentButton = new Button("Make an appointment");
-    private MakeAppointmentDialog makeAppointmentDialog;
+    private final Button makeAppointmentButton = new Button("Appointments");
+    private AppointmentsDialog makeAppointmentDialog;
 
     public DonorMainView(DonorService donorService, LocationService locationService, AppointmentService appointmentService) {
         this.donorService = donorService;
@@ -62,7 +62,7 @@ public class DonorMainView extends VerticalLayout implements BeforeEnterObserver
         });
 
         makeAppointmentButton.addClickListener( l -> {
-            makeAppointmentDialog = new MakeAppointmentDialog(donor, locationService, appointmentService);
+            makeAppointmentDialog = new AppointmentsDialog(donor, locationService, appointmentService);
             makeAppointmentDialog.open();
         });
 
