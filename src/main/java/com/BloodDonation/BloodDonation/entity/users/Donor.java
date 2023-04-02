@@ -1,8 +1,6 @@
-package com.BloodDonation.BloodDonation.entity;
+package com.BloodDonation.BloodDonation.entity.users;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 

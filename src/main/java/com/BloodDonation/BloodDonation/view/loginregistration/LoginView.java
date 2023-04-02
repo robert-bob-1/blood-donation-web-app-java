@@ -1,22 +1,19 @@
 package com.BloodDonation.BloodDonation.view.loginregistration;
 
-import com.BloodDonation.BloodDonation.entity.User;
-import com.BloodDonation.BloodDonation.entity.UserType;
+import com.BloodDonation.BloodDonation.entity.users.User;
 import com.BloodDonation.BloodDonation.mapper.UserMapper;
 import com.BloodDonation.BloodDonation.service.UserService;
 import com.BloodDonation.BloodDonation.view.loginregistration.userviews.admin.AdminMainView;
+import com.BloodDonation.BloodDonation.view.loginregistration.userviews.donor.DonorMainView;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteParameters;
-
-import java.util.Optional;
 
 @Route(value = "")
 @PageTitle("Login")
@@ -51,8 +48,14 @@ public class LoginView extends VerticalLayout {
                         System.out.println("Admin logged in");
                         UI.getCurrent().navigate(AdminMainView.class, new RouteParameters("userID", String.valueOf(user.uuid)));
                     }
-                    case ("doctor") -> System.out.println("Doctor logged in");
-                    case ("donor") -> System.out.println("Donor logged in");
+                    case ("doctor") -> {
+                        System.out.println("Doctor logged in");
+
+                    }
+                    case ("donor") -> {
+                        System.out.println("Donor logged in");
+                        UI.getCurrent().navigate(DonorMainView.class, new RouteParameters("userID", String.valueOf(user.uuid)));
+                    }
 
 
 //                   UI.getCurrent().navigate(HomeView.class, new RouteParameters("userID", String.valueOf(id)));

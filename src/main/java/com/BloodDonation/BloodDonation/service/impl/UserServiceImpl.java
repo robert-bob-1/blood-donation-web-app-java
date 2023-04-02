@@ -2,7 +2,7 @@ package com.BloodDonation.BloodDonation.service.impl;
 
 import com.BloodDonation.BloodDonation.dto.UserCreateDTO;
 import com.BloodDonation.BloodDonation.dto.UserDTO;
-import com.BloodDonation.BloodDonation.entity.User;
+import com.BloodDonation.BloodDonation.entity.users.User;
 import com.BloodDonation.BloodDonation.mapper.UserMapper;
 import com.BloodDonation.BloodDonation.repository.UserRepository;
 import com.BloodDonation.BloodDonation.service.UserService;

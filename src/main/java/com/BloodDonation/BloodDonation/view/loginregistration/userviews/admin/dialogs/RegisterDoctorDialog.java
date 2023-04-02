@@ -1,7 +1,7 @@
-package com.BloodDonation.BloodDonation.view.loginregistration.userviews.admin.doctorDialogs;
+package com.BloodDonation.BloodDonation.view.loginregistration.userviews.admin.dialogs;
 
-import com.BloodDonation.BloodDonation.entity.Admin;
-import com.BloodDonation.BloodDonation.entity.Doctor;
+import com.BloodDonation.BloodDonation.entity.users.Admin;
+import com.BloodDonation.BloodDonation.entity.users.Doctor;
 import com.BloodDonation.BloodDonation.service.AdminService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
@@ -10,40 +10,45 @@ import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 
-public class DeleteDoctorDialog extends Dialog {
+
+public class RegisterDoctorDialog extends Dialog {
     private final Admin admin;
     private final AdminService adminService;
-
     //Form
     VerticalLayout form = new VerticalLayout();
+    TextField firstName = new TextField("First Name");
+    TextField lastName = new TextField("Last Name");
     TextField email = new TextField("Email");
+    TextField password = new TextField("Password");
 
-    Button deleteDoctorButton = new Button("delete doctor");
+    Button addDoctorButton = new Button("Add doctor");
 
     Notification notification = new Notification("");
 
-
-    public DeleteDoctorDialog(Admin admin, AdminService adminService) {
+    public RegisterDoctorDialog(Admin admin, AdminService adminService) {
         this.admin = admin;
         this.adminService = adminService;
 
-        deleteDoctorButton.addClickListener(e -> {
-            if (adminService.deleteDoctorByEmail(email.getValue()) != null) {
-                notification.setText("Doctor deleted succesfully!");
+        addDoctorButton.addClickListener(e -> {
+            Doctor newDoctor = new Doctor(email.getValue(),
+                    password.getValue(), firstName.getValue(), lastName.getValue(), "doctor");
+
+            if (adminService.registerDoctor(newDoctor) != null) {
+                notification.setText("Doctor added succesfully!");
                 clearAll();
             } else {
                 notification.setText("Doctor couldn't be created!");
             }
             notification.open();
-            notification.setDuration(2000);
+//            notification.setDuration(2000);
         });
 
-        form.add(email, deleteDoctorButton);
+        form.add(firstName, lastName, email, password, addDoctorButton);
         form.setWidth("600px");
         form.setAlignItems(FlexComponent.Alignment.STRETCH);
         form.setJustifyContentMode(FlexComponent.JustifyContentMode.AROUND);
 
-        setHeaderTitle("Delete doctor");
+        setHeaderTitle("Add doctor");
         add(form);
 
         Button closeDialog = new Button("Close", l -> this.close());
@@ -52,6 +57,9 @@ public class DeleteDoctorDialog extends Dialog {
     }
 
     public void clearAll(){
+        firstName.clear();
+        lastName.clear();
         email.clear();
+        password.clear();
     }
 }

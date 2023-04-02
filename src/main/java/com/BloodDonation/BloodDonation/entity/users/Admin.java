@@ -1,4 +1,4 @@
-package com.BloodDonation.BloodDonation.entity;
+package com.BloodDonation.BloodDonation.entity.users;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

@@ -1,7 +1,6 @@
 package com.BloodDonation.BloodDonation.repository;
 
-import com.BloodDonation.BloodDonation.entity.Admin;
-import com.BloodDonation.BloodDonation.entity.Donor;
+import com.BloodDonation.BloodDonation.entity.users.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

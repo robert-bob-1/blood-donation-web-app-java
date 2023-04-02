@@ -1,6 +1,6 @@
 package com.BloodDonation.BloodDonation.service;
 
-import com.BloodDonation.BloodDonation.entity.Doctor;
+import com.BloodDonation.BloodDonation.entity.users.Doctor;
 
 public interface DoctorService {
     Doctor registerDoctor(Doctor doctor);

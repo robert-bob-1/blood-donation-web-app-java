@@ -1,12 +1,12 @@
 package com.BloodDonation.BloodDonation.view.loginregistration.userviews.admin;
 
 
-import com.BloodDonation.BloodDonation.entity.Admin;
+import com.BloodDonation.BloodDonation.entity.users.Admin;
 import com.BloodDonation.BloodDonation.service.AdminService;
-import com.BloodDonation.BloodDonation.view.loginregistration.userviews.admin.doctorDialogs.DeleteDoctorDialog;
-import com.BloodDonation.BloodDonation.view.loginregistration.userviews.admin.doctorDialogs.RegisterDoctorDialog;
-import com.BloodDonation.BloodDonation.view.loginregistration.userviews.admin.doctorDialogs.SeeDoctorsDialog;
-import com.BloodDonation.BloodDonation.view.loginregistration.userviews.admin.doctorDialogs.UpdateDoctorDialog;
+import com.BloodDonation.BloodDonation.view.loginregistration.userviews.admin.dialogs.DeleteDoctorDialog;
+import com.BloodDonation.BloodDonation.view.loginregistration.userviews.admin.dialogs.RegisterDoctorDialog;
+import com.BloodDonation.BloodDonation.view.loginregistration.userviews.admin.dialogs.SeeDoctorsDialog;
+import com.BloodDonation.BloodDonation.view.loginregistration.userviews.admin.dialogs.UpdateDoctorDialog;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEnterEvent;

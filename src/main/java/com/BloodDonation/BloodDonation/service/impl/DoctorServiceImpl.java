@@ -1,6 +1,6 @@
 package com.BloodDonation.BloodDonation.service.impl;
 
-import com.BloodDonation.BloodDonation.entity.Doctor;
+import com.BloodDonation.BloodDonation.entity.users.Doctor;
 import com.BloodDonation.BloodDonation.repository.DoctorRepository;
 import com.BloodDonation.BloodDonation.service.DoctorService;
 import org.springframework.stereotype.Service;

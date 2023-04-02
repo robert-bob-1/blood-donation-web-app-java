@@ -1,7 +1,7 @@
 package com.BloodDonation.BloodDonation.service.impl;
 
-import com.BloodDonation.BloodDonation.entity.Admin;
-import com.BloodDonation.BloodDonation.entity.Doctor;
+import com.BloodDonation.BloodDonation.entity.users.Admin;
+import com.BloodDonation.BloodDonation.entity.users.Doctor;
 import com.BloodDonation.BloodDonation.repository.AdminRepository;
 import com.BloodDonation.BloodDonation.repository.DoctorRepository;
 import com.BloodDonation.BloodDonation.service.AdminService;

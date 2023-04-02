@@ -1,8 +1,7 @@
 package com.BloodDonation.BloodDonation.view.loginregistration.components;
 
-import com.BloodDonation.BloodDonation.entity.Donor;
+import com.BloodDonation.BloodDonation.entity.users.Donor;
 import com.BloodDonation.BloodDonation.service.DonorService;
-import com.BloodDonation.BloodDonation.service.UserService;
 import com.vaadin.flow.component.HasValueAndElement;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;

@@ -1,7 +1,7 @@
 package com.BloodDonation.BloodDonation.service;
 
-import com.BloodDonation.BloodDonation.entity.Admin;
-import com.BloodDonation.BloodDonation.entity.Doctor;
+import com.BloodDonation.BloodDonation.entity.users.Admin;
+import com.BloodDonation.BloodDonation.entity.users.Doctor;
 
 import java.util.List;
 import java.util.UUID;

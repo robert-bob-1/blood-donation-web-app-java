@@ -1,7 +1,7 @@
-package com.BloodDonation.BloodDonation.view.loginregistration.userviews.admin.doctorDialogs;
+package com.BloodDonation.BloodDonation.view.loginregistration.userviews.admin.dialogs;
 
-import com.BloodDonation.BloodDonation.entity.Admin;
-import com.BloodDonation.BloodDonation.entity.Doctor;
+import com.BloodDonation.BloodDonation.entity.users.Admin;
+import com.BloodDonation.BloodDonation.entity.users.Doctor;
 import com.BloodDonation.BloodDonation.service.AdminService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
