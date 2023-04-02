@@ -1,8 +1,10 @@
 package com.BloodDonation.BloodDonation.view.loginregistration.userviews.donor.dialogs;
 
+import com.BloodDonation.BloodDonation.entity.Appointment;
 import com.BloodDonation.BloodDonation.entity.users.Donor;
 import com.BloodDonation.BloodDonation.entity.Location;
 import com.BloodDonation.BloodDonation.service.AppointmentService;
+import com.BloodDonation.BloodDonation.service.DonorService;
 import com.BloodDonation.BloodDonation.service.LocationService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
@@ -19,6 +21,7 @@ public class MakeAppointmentDialog extends Dialog {
     private final Donor donor;
     private final LocationService locationService;
     private final AppointmentService appointmentService;
+    private final DonorService donorService;
 
     //Form
     VerticalLayout form = new VerticalLayout();
@@ -32,10 +35,11 @@ public class MakeAppointmentDialog extends Dialog {
     Notification notification = new Notification("");
 
 
-    public MakeAppointmentDialog(Donor donor, LocationService locationService, AppointmentService appointmentService) {
+    public MakeAppointmentDialog(Donor donor, LocationService locationService, AppointmentService appointmentService, DonorService donorService) {
         this.donor = donor;
         this.locationService = locationService;
         this.appointmentService = appointmentService;
+        this.donorService = donorService;
 
         grid.addColumn(Location::getName).setHeader("Location name");
 
@@ -43,7 +47,10 @@ public class MakeAppointmentDialog extends Dialog {
         grid.setItems(locations);
 
         addAppointmentButton.addClickListener( l -> {
-            appointmentService.createAppointment(donor, grid.asSingleSelect().getValue(), datetime.getValue());
+            donor.addAppointment(
+                    new Appointment(donor, grid.asSingleSelect().getValue(), datetime.getValue())
+                    );
+            donorService.registerDonor(donor);
             datetime.clear();
             grid.deselectAll();
         });

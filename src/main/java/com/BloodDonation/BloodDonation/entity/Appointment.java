@@ -1,5 +1,7 @@
 package com.BloodDonation.BloodDonation.entity;
 
+import com.BloodDonation.BloodDonation.entity.users.Doctor;
+import com.BloodDonation.BloodDonation.entity.users.Donor;
 import com.BloodDonation.BloodDonation.entity.utils.Utility;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
@@ -15,21 +17,21 @@ public class Appointment {
     @Column(name = "uuid", nullable = false)
     private UUID id;
 
-    @Column(name = "doctor_id")
-    private UUID doctorId;
-
-    @Column(name = "user_id")
-    private UUID userId;
-
-    @Column(name = "location_id")
-    private UUID locationId;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Donor donor;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Doctor doctor;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    private Location location;
 
     @Column(name = "datetime")
     private Timestamp datetime;
 
-    public Appointment(UUID userId, UUID locationId, String datetime) {
-        this.userId = userId;
-        this.locationId = locationId;
+    public Appointment(Donor donor, Location location, String datetime) {
+//        this.donor = donor;
+//        this.location = location;
         this.datetime = Utility.parseTimestamp(datetime);
     }
 
@@ -44,30 +46,29 @@ public class Appointment {
         this.id = id;
     }
 
-
-    public UUID getDoctorId() {
-        return doctorId;
-    }
-
-    public void setDoctorId(UUID doctorId) {
-        this.doctorId = doctorId;
-    }
-
-    public UUID getUserId() {
-        return userId;
-    }
-
-    public void setUserId(UUID userId) {
-        this.userId = userId;
-    }
-
-    public UUID getLocationId() {
-        return locationId;
-    }
-
-    public void setLocationId(UUID locationId) {
-        this.locationId = locationId;
-    }
+//    public Donor getDonor() {
+//        return donor;
+//    }
+//
+//    public void setDonor(Donor donor) {
+//        this.donor = donor;
+//    }
+//
+//    public Doctor getDoctor() {
+//        return doctor;
+//    }
+//
+//    public void setDoctor(Doctor doctor) {
+//        this.doctor = doctor;
+//    }
+//
+//    public Location getLocation() {
+//        return location;
+//    }
+//
+//    public void setLocation(Location location) {
+//        this.location = location;
+//    }
 
     public Timestamp getDatetime() {
         return datetime;

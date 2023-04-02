@@ -62,7 +62,7 @@ public class DonorMainView extends VerticalLayout implements BeforeEnterObserver
         });
 
         makeAppointmentButton.addClickListener( l -> {
-            makeAppointmentDialog = new MakeAppointmentDialog(donor, locationService, appointmentService);
+            makeAppointmentDialog = new MakeAppointmentDialog(donor, locationService, appointmentService, donorService);
             makeAppointmentDialog.open();
         });
 

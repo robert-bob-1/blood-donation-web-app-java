@@ -19,20 +19,20 @@ public class Location {
     private String name;
 
     @OneToMany(
-            mappedBy = "location",
+//            mappedBy = "location",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
     private List<Appointment> appointments = new ArrayList<>();
 
-    public void addComment(Appointment appointment) {
+    public void addAppointment(Appointment appointment) {
         appointments.add(appointment);
-        appointment.setLocation(this);
+//        appointment.setLocation(this);
     }
 
-    public void removeComment(Appointment appointment) {
+    public void removeAppointment(Appointment appointment) {
         appointments.remove(appointment);
-        appointment.setLocation(null);
+//        appointment.setLocation(null);
     }
 
     public UUID getId() {
