@@ -39,6 +39,12 @@ public class Appointment {
     public Appointment() {
     }
 
+    public Appointment(UUID userId, UUID locationId, String datetime) {
+        this.userId = userId;
+        this.locationId = locationId;
+        this.datetime = Utility.parseTimestamp(datetime);
+    }
+
     public UUID getId() {
         return id;
     }
