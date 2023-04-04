@@ -14,6 +14,9 @@ public class UserMapper {
         user.password = dto.password;
         return user;
     }
+
+    // daca vrei să pui și DIN ce transformi ÎN ce transformi, un nume mai bun e fromDtoToEntity sau fromDtoToUser
+
 //    public User toUserFromDTO(UserDTO dto){
 //        User user =  new User();
 //        user.email = dto.email;

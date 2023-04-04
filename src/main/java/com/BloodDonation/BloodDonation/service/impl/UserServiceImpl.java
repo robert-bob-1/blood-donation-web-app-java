@@ -27,6 +27,7 @@ public class UserServiceImpl implements UserService {
         User savedUser = userRepository.save(dto);
         return userMapper.toUserDTO(savedUser);
     }
+    // de ce sunt două register?
 
     @Override
     public UserDTO registerUserDTO(UserCreateDTO dto){

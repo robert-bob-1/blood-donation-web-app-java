@@ -16,7 +16,11 @@ public class User {
     public String password;
     public String firstName;
     public String lastName;
-    public String userType;
+//    // vezi așa
+//    @Enumerated(EnumType.STRING)
+//    public UserType userType;
+    public String userType; // dacă tot ai enum.... ce ar fi să îl folosești aici? :D
+
 
     public User() {}
 

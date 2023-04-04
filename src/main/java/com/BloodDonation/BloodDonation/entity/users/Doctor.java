@@ -13,8 +13,8 @@ public class Doctor extends User{
 
     @OneToMany(
 //            mappedBy = "doctor",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
+            cascade = CascadeType.ALL, // nu aș ține un cascade all pentru că doctorul nu creză/șterge appointments. nu sunt chiar așa de conectate entitățile astea două între ele
+            orphanRemoval = true    // daca un doctor e șters din sistem, asta nu înseamnă că toate programările pe care le-a validat vor fi șterse (așa ele ar dispărea și pentru user)
     )
     private List<Appointment> appointments = new ArrayList<>();
 

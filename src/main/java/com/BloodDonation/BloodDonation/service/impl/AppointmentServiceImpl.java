@@ -19,6 +19,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         this.appointmentRepository = appointmentRepository;
     }
 
+    // no more create?
     @Override
     public Appointment createAppointment(Donor donor, Location location, String datetime) {
 //        Appointment newAppointment = new Appointment(

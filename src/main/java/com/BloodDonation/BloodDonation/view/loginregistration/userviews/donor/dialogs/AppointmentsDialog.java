@@ -51,6 +51,7 @@ public class AppointmentsDialog extends Dialog {
         locationGrid.setItems(locations);
 
         addAppointmentButton.addClickListener( l -> {
+
             Appointment appointment = appointmentService.createAppointment(donor, locationGrid.asSingleSelect().getValue(), datetime.getValue());
             if (appointments == null) {
                 appointments = new ArrayList<>();

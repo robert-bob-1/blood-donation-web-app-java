@@ -13,6 +13,8 @@ import java.util.UUID;
 
 @Service
 @Transactional
+// un admin service se ocupa de admins, nu de doctori
+// un doctor service se ocupa de doctori ;)
 public class AdminServiceImpl implements AdminService {
     private final AdminRepository adminRepository;
     private final DoctorRepository doctorRepository;

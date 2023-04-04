@@ -26,6 +26,7 @@ public class Appointment {
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    private Location location;
 
+    // de ce ai scos legăturile?
     @Column(name = "user_id", nullable = false)
     private UUID userId;
     @Column(name = "doctor_id", nullable = false)

@@ -16,6 +16,7 @@ public class DoctorServiceImpl implements DoctorService {
         this.doctorRepository = doctorRepository;
     }
 
+    // duplicated code?
     @Override
     public Doctor registerDoctor(Doctor doctor) {
         Doctor savedDoctor = doctorRepository.save(doctor);
