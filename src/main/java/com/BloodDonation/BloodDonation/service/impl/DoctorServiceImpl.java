@@ -5,6 +5,7 @@ import com.BloodDonation.BloodDonation.repository.DoctorRepository;
 import com.BloodDonation.BloodDonation.service.DoctorService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -36,12 +37,32 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public Doctor updateDoctor(Doctor newDoctor) {
-        return null;
+        doctorRepository
+                .findById(newDoctor.uuid)
+                .ifPresent(doctor -> {
+                    doctor.email = newDoctor.email;
+                    doctor.password = newDoctor.password;
+                    doctor.firstName = newDoctor.firstName;
+                    doctor.lastName = newDoctor.lastName;
+
+                    doctorRepository.save(doctor);
+                });
+        return newDoctor;
     }
 
     @Override
     public Doctor getDoctorById(UUID uuid) {
         Optional<Doctor> doctor = doctorRepository.findById(uuid);
         return doctor.get();
+    }
+
+    @Override
+    public List<Doctor> getDoctors() {
+        return doctorRepository.findAll();
+    }
+
+    @Override
+    public void deleteDoctor(UUID uuid) {
+        doctorRepository.deleteById(uuid);
     }
 }

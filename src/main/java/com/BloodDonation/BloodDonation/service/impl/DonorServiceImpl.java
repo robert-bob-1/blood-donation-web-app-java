@@ -29,9 +29,9 @@ public class DonorServiceImpl implements DonorService {
     }
 
     @Override
-    public void updateDonor(UUID uuid, Donor newDonor) {
+    public Donor updateDonor(Donor newDonor) {
         donorRepository
-                .findById(uuid)
+                .findById(newDonor.uuid)
                 .ifPresent(donor -> {
                     donor.email = newDonor.email;
                     donor.password = newDonor.password;
@@ -40,6 +40,7 @@ public class DonorServiceImpl implements DonorService {
 
                     donorRepository.save(donor);
                 });
+        return newDonor;
     }
 
     @Override
@@ -52,5 +53,10 @@ public class DonorServiceImpl implements DonorService {
     @Override
     public void deleteDonor(UUID uuid) {
         donorRepository.deleteById(uuid);
+    }
+
+    @Override
+    public void deleteDonorByEmail(String email) {
+        donorRepository.deleteByEmail(email);
     }
 }

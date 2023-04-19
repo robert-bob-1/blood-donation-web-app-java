@@ -9,9 +9,11 @@ public interface DonorService {
 
     Donor getDonorByEmail(String email);
 
-    void updateDonor(UUID uuid, Donor newDonor);
+    Donor updateDonor(Donor newDonor);
 
     Donor getDonor(UUID uuid);
 
     void deleteDonor(UUID uuid);
+
+    void deleteDonorByEmail(String email);
 }

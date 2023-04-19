@@ -16,4 +16,6 @@ public interface AdminService {
     Admin getAdmin(UUID userID);
 
     List<Doctor> getDoctors();
+
+    Admin getAdminByEmail(String email);
 }

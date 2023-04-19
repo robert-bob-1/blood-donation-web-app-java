@@ -12,4 +12,5 @@ public interface DonorRepository extends JpaRepository<Donor, UUID>{
 
     Optional<Donor> findByEmail(String email);
 
+    void deleteByEmail(String email);
 }

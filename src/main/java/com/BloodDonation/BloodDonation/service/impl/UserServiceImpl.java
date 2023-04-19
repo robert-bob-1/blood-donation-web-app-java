@@ -8,6 +8,7 @@ import com.BloodDonation.BloodDonation.repository.UserRepository;
 import com.BloodDonation.BloodDonation.service.UserService;
 import org.springframework.stereotype.Service;
 
+import java.security.InvalidParameterException;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -23,9 +24,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO registerUser(User dto){
-        User savedUser = userRepository.save(dto);
-        return userMapper.toUserDTO(savedUser);
+    public User registerUser(User user){
+        User savedUser = userRepository.save(user);
+        return savedUser;
     }
 
     @Override
@@ -40,15 +41,18 @@ public class UserServiceImpl implements UserService {
         if(foundUser.isPresent())
             return userMapper.toUserDTO(foundUser.get());
         else
-            return null;
+                throw new InvalidParameterException("There is no user with id " + uuid);
     }
+
     @Override
-    public UserDTO getUserByEmail(String email) {
+    public User getUserByEmail(String email) {
         Optional<User> foundUser = userRepository.findByEmail(email);
-        if(foundUser.isPresent())
-            return userMapper.toUserDTO(foundUser.get());
-        else
-            return null;
+        return foundUser.orElse(null);
+//        Optional<User> foundUser = userRepository.findByEmail(email);
+//        if(foundUser.isPresent())
+//            return userMapper.toUserDTO(foundUser.get());
+//        else
+//            return null;
     }
 
     @Override
@@ -58,5 +62,20 @@ public class UserServiceImpl implements UserService {
             return (foundUser.get());
         else
             return null;
+    }
+
+    @Override
+    public User updateUser(User newUser) {
+        userRepository
+                .findById(newUser.uuid)
+                .ifPresent(user -> {
+                    user.email = newUser.email;
+                    user.password = newUser.password;
+                    user.firstName = newUser.firstName;
+                    user.lastName = newUser.lastName;
+
+                    userRepository.save(user);
+                });
+        return newUser;
     }
 }

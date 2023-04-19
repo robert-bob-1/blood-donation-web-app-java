@@ -5,33 +5,20 @@ package com.BloodDonation.BloodDonation.controller;
 
 import com.BloodDonation.BloodDonation.dto.UserCreateDTO;
 import com.BloodDonation.BloodDonation.dto.UserDTO;
+import com.BloodDonation.BloodDonation.entity.users.User;
 import com.BloodDonation.BloodDonation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.InvalidParameterException;
 import java.util.UUID;
 
 @RestController
+@RequestMapping("/user")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
-    //REST controller
-    //cand vrem sa obtinem o resursa cu id
-    //GET /resource/{id}
-
-    //cand vrem sa cream o resursa
-    //POST /resource
-
-    //cand vrem sa updatam o resursa cu id
-    //PUT  /resource/{id}
-
-    //sterge resursa cu id-ul dat
-    //DELETE /resource/{id}
-
-    //informatiile pe care le trimitem le grupam in DTO data transfer object
-    //pentru asta cream un pachet DTO
-//    @Autowired
-//    UserService userService;
 
     private final UserService userService;
 
@@ -39,18 +26,56 @@ public class UserController {
         this.userService = userService;
     }
 
-//    @PostMapping("/user")
-//    ResponseEntity<UserDTO> registerUser(@RequestBody UserCreateDTO dto){
-//        UserDTO registeredUser = userService.registerUserDTO(dto);
-//        return ResponseEntity.ok(registeredUser);
-//    }
-//
-//    @GetMapping("/user/{email}")
-//    ResponseEntity<UserDTO> getUser(@PathVariable("email") String email){
-//        UserDTO foundUser = userService.getUserByEmail(email);
+    @PostMapping("/register")
+    ResponseEntity<UserDTO> registerUser(@RequestBody UserCreateDTO dto){
+        UserDTO registeredUser = userService.registerUserDTO(dto);
+        return ResponseEntity.ok(registeredUser);
+    }
+
+    @GetMapping("/{email}/{password}")
+    ResponseEntity<User> loginUser(@PathVariable("email") String email,
+                                   @PathVariable("password") String password){
+        User foundUser = userService.loginUser(email, password);
+        if (foundUser != null)
+            return ResponseEntity.ok(foundUser);
+        else
+            return (ResponseEntity<User>) ResponseEntity.notFound();
+    }
+    @GetMapping("/{email}")
+    ResponseEntity<User> getUserByEmail(@PathVariable("email") String email){
+        User foundUser = userService.getUserByEmail(email);
+        if (foundUser != null)
+            return ResponseEntity.ok(foundUser);
+        else
+            return (ResponseEntity<User>) ResponseEntity.notFound();
+    }
+
+    @PutMapping("/update")
+    ResponseEntity<User> updateUser(@RequestBody User user){
+        User updatedUser = userService.updateUser(user);
+        if (updatedUser != null)
+            return ResponseEntity.ok(updatedUser);
+        else
+            return (ResponseEntity<User>) ResponseEntity.notFound();
+    }
+
+//    @DeleteMapping("/delete/{uuid}")
+//    ResponseEntity<User> deleteUser(@PathVariable("uuid") UUID uuid){
+//        User foundUser = userService.deleteById(email);
 //        if (foundUser != null)
 //            return ResponseEntity.ok(foundUser);
 //        else
-//            return (ResponseEntity<UserDTO>) ResponseEntity.notFound();
+//            return (ResponseEntity<User>) ResponseEntity.notFound();
 //    }
+//    @GetMapping("/{id}")
+//    ResponseEntity<?> getUserById(@PathVariable("id") UUID id){
+//        try {
+//            UserDTO foundUser = userService.getUserById(id);
+//            return ResponseEntity.ok(foundUser);
+//        }
+//        catch (InvalidParameterException e){
+//            return ResponseEntity.badRequest().body(e.getMessage());
+//        }
+//    }
+
 }
