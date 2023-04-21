@@ -18,6 +18,8 @@ public class Location {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "capacity")
+    private int capacity;
     public UUID getId() {
         return id;
     }
@@ -34,4 +36,11 @@ public class Location {
         this.name = name;
     }
 
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
 }

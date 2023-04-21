@@ -1,19 +1,29 @@
 package com.BloodDonation.BloodDonation.controller;
 
+import com.BloodDonation.BloodDonation.entity.Appointment;
+import com.BloodDonation.BloodDonation.service.AppointmentService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/appointment")
+@RequestMapping("/appointment")
 public class AppointmentController {
+    private final AppointmentService appointmentService;
+
+    public AppointmentController(AppointmentService appointmentService) {
+        this.appointmentService = appointmentService;
+    }
 
     @GetMapping("")
     ResponseEntity<?> getAppointmentsByDonor(@RequestParam("donorId")UUID uuid){
         return ResponseEntity.ok("No appointments for " + "uuid");
+    }
+
+    @PostMapping("")
+    ResponseEntity<Appointment> addAppointment(@RequestBody Appointment appointment){
+        Appointment newAppointment = appointmentService.addAppointment(appointment);
+        return ResponseEntity.ok(newAppointment);
     }
 }

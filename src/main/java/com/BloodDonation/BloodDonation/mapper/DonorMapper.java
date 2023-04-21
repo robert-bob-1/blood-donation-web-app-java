@@ -13,6 +13,7 @@ public class DonorMapper {
         donor.password = dto.password;
         donor.firstName = dto.firstName;
         donor.lastName = dto.lastName;
+        donor.userType = "donor";
         donor.bloodType = dto.bloodType;
 
         return donor;

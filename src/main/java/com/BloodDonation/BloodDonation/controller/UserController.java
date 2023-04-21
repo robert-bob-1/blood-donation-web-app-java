@@ -12,9 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.InvalidParameterException;
-import java.util.UUID;
-
 @RestController
 @RequestMapping("/user")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -26,7 +23,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/register")
+    @PostMapping("")
     ResponseEntity<UserDTO> registerUser(@RequestBody UserCreateDTO dto){
         UserDTO registeredUser = userService.registerUserDTO(dto);
         return ResponseEntity.ok(registeredUser);
@@ -50,7 +47,7 @@ public class UserController {
             return (ResponseEntity<User>) ResponseEntity.notFound();
     }
 
-    @PutMapping("/update")
+    @PutMapping("")
     ResponseEntity<User> updateUser(@RequestBody User user){
         User updatedUser = userService.updateUser(user);
         if (updatedUser != null)

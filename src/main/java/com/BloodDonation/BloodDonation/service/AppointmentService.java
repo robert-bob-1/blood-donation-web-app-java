@@ -19,4 +19,6 @@ public interface AppointmentService {
     ArrayList<Appointment> getAppointmentsByLocation(Location location);
 
     void validateAppointment(Appointment selectedAppointment, Doctor doctor);
+
+    Appointment addAppointment(Appointment appointment);
 }

@@ -34,7 +34,7 @@ public class DoctorController {
             return (ResponseEntity<Doctor>) ResponseEntity.notFound();
     }
 
-    @GetMapping("/all")
+    @GetMapping("")
     ResponseEntity<Doctor[]> getAllDoctors(){
         Doctor[] foundDoctors = doctorService.getDoctors().toArray(new Doctor[0]);
         if (foundDoctors != null)
@@ -43,14 +43,14 @@ public class DoctorController {
             return (ResponseEntity<Doctor[]>) ResponseEntity.notFound();
     }
 
-    @PostMapping("/register")
+    @PostMapping("")
     ResponseEntity<Doctor> registerDoctor(@RequestBody DoctorCreateDTO dto){
         Doctor newDoctor = doctorMapper.fromCreateDTOToDoctor(dto);
         Doctor registeredDoctor = doctorService.registerDoctor(newDoctor);
         return ResponseEntity.ok(registeredDoctor);
     }
 
-    @PutMapping("/edit")
+    @PutMapping("")
     ResponseEntity<Doctor> updateDoctor(@RequestBody Doctor doctor){
         Doctor updatedDoctor = doctorService.updateDoctor(doctor);
         if (updatedDoctor != null)
@@ -59,7 +59,7 @@ public class DoctorController {
             return (ResponseEntity<Doctor>) ResponseEntity.notFound();
     }
 
-    @DeleteMapping("/delete/{uuid}")
+    @DeleteMapping("/{uuid}")
     ResponseEntity<Doctor> deleteDoctor(@PathVariable("uuid") String uuid){
         UUID uuid1 = UUID.fromString(uuid);
         doctorService.deleteDoctor(uuid1);

@@ -7,4 +7,5 @@ import java.util.ArrayList;
 public interface LocationService {
     ArrayList<Location> getLocations();
 
+    Location addLocation(Location location);
 }

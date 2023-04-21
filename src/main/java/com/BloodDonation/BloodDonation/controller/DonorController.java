@@ -23,7 +23,7 @@ public class DonorController {
         this.donorMapper = donorMapper;
     }
 
-    @PostMapping("/register")
+    @PostMapping("")
     ResponseEntity<Donor> registerDonor(@RequestBody DonorCreateDTO dto){
         Donor newDonor = donorMapper.fromCreateDTOToDonor(dto);
         Donor registeredDonor = donorService.registerDonor(newDonor);
@@ -39,7 +39,7 @@ public class DonorController {
             return (ResponseEntity<Donor>) ResponseEntity.notFound();
     }
 
-    @PutMapping("/edit")
+    @PutMapping("")
     ResponseEntity<Donor> updateDonor(@RequestBody Donor donor){
         Donor updatedDonor = donorService.updateDonor(donor);
         if (updatedDonor != null)
@@ -48,7 +48,7 @@ public class DonorController {
             return (ResponseEntity<Donor>) ResponseEntity.notFound();
     }
 
-    @DeleteMapping("/delete/{uuid}")
+    @DeleteMapping("/{uuid}")
     ResponseEntity<Donor> deleteDonor(@PathVariable("uuid") UUID uuid){
         donorService.deleteDonor(uuid);
         return new ResponseEntity<>(HttpStatus.OK);
