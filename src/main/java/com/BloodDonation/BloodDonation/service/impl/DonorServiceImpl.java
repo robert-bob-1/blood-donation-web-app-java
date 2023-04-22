@@ -31,7 +31,7 @@ public class DonorServiceImpl implements DonorService {
     @Override
     public Donor updateDonor(Donor newDonor) {
         donorRepository
-                .findById(newDonor.uuid)
+                .findById(newDonor.id)
                 .ifPresent(donor -> {
                     donor.email = newDonor.email;
                     donor.password = newDonor.password;

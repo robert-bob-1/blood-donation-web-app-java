@@ -11,13 +11,6 @@ import java.util.List;
 @Entity
 public class Doctor extends User{
 
-//    @OneToMany(
-////            mappedBy = "doctor",
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true
-//    )
-//    private List<Appointment> appointments = new ArrayList<>();
-
     public Doctor() {
     }
 
@@ -25,13 +18,4 @@ public class Doctor extends User{
         super(email, password, firstName, lastName, userType);
     }
 
-//    public void addAppointment(Appointment appointment) {
-//        appointments.add(appointment);
-////        appointment.setDoctor(this);
-//    }
-//
-//    public void removeAppointment(Appointment appointment) {
-//        appointments.remove(appointment);
-////        appointment.setDoctor(null);
-//    }
 }

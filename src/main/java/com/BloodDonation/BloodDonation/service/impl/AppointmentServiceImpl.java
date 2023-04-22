@@ -21,11 +21,11 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     public Appointment createAppointment(Donor donor, Location location, String date) {
-        Appointment newAppointment = new Appointment(
-                donor.uuid, location.getId(), date);
-
-        return appointmentRepository.save(newAppointment);
-
+//        Appointment newAppointment = new Appointment(
+//                donor.id, location.getId(), date);
+//
+//        return appointmentRepository.save(newAppointment);
+        return null;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     @Override
     public ArrayList<Appointment> getAppointmentsByDonor(Donor donor) {
-        return appointmentRepository.findByUserId(donor.uuid);
+        return appointmentRepository.findByUserId(donor.id);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     @Transactional
     public void deleteByDonor(Donor donor) {
-        appointmentRepository.deleteByUserId(donor.uuid);
+        appointmentRepository.deleteByUserId(donor.id);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class AppointmentServiceImpl implements AppointmentService {
     public void validateAppointment(Appointment selectedAppointment, Doctor doctor) {
         appointmentRepository.findById(selectedAppointment.getId())
                 .ifPresent(appointment -> {
-                    appointment.setDoctorId(doctor.getUuid());
+                    appointment.setDoctorId(doctor.getId());
 
                     appointmentRepository.save(appointment);
                 });

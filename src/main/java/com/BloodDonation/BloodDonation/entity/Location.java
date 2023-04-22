@@ -12,7 +12,7 @@ import java.util.UUID;
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "uuid", nullable = false)
+    @Column(name = "id", nullable = false)
     private UUID id;
 
     @Column(name = "name")

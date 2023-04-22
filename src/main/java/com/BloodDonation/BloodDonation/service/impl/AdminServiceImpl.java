@@ -49,7 +49,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public Admin getAdmin(UUID userID) {
-        Admin admin = adminRepository.findByUuid(userID);
+        Admin admin = adminRepository.findById(userID).get();
         return null;
     }
 

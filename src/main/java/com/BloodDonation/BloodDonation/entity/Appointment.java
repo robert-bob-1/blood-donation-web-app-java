@@ -1,13 +1,13 @@
 package com.BloodDonation.BloodDonation.entity;
 
-import com.BloodDonation.BloodDonation.entity.utils.Utility;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -18,7 +18,7 @@ import java.util.UUID;
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "uuid", nullable = false)
+    @Column(name = "id", nullable = false)
     private UUID id;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
@@ -36,20 +36,9 @@ public class Appointment {
     private UUID doctorId;
     @Column(name = "location_id", nullable = false)
     private UUID locationId;
-    private Date date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDate date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
     private Time time;
 
-    public Appointment(UUID uuid, UUID id, String date) {
-        this.userId = uuid;
-        this.locationId = id;
-        this.date = Utility.parseDate(date);
-    }
-
-    public void setDate(String date) {
-        this.date = Utility.parseDate(date);
-    }
-
-    public void setTime(String time) {
-        this.time = Utility.parseTime(time);
-    }
 }

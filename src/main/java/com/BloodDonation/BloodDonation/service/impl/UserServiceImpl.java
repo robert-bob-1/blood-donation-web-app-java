@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User updateUser(User newUser) {
         userRepository
-                .findById(newUser.uuid)
+                .findById(newUser.id)
                 .ifPresent(user -> {
                     user.email = newUser.email;
                     user.password = newUser.password;

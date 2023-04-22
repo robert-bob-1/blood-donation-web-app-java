@@ -38,7 +38,7 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public Doctor updateDoctor(Doctor newDoctor) {
         doctorRepository
-                .findById(newDoctor.uuid)
+                .findById(newDoctor.id)
                 .ifPresent(doctor -> {
                     doctor.email = newDoctor.email;
                     doctor.password = newDoctor.password;

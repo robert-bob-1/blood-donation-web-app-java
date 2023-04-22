@@ -1,9 +1,13 @@
 package com.BloodDonation.BloodDonation.entity.users;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "app_user")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -26,26 +30,5 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userType = userType;
-    }
-
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getUserType() {
-        return userType;
     }
 }

@@ -23,7 +23,7 @@ public class UserMapper {
 
     public UserDTO toUserDTO(User user){
         UserDTO dto = new UserDTO();
-        dto.uuid = user.id;
+        dto.id = user.id;
         dto.email = user.email;
         dto.firstName = user.firstName;
         dto.lastName = user.lastName;
