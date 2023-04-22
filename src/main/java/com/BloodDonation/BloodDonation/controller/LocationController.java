@@ -35,11 +35,12 @@ public class LocationController {
         return ResponseEntity.ok(newLocation);
     }
 
-    @GetMapping("/{locationId}/free-spots")
-    ResponseEntity<Integer> getFreeSpots(@PathVariable("locationId") UUID locationId,
+    @PostMapping("/free-spots")
+    ResponseEntity<Integer> getFreeSpots(@RequestBody Location location,
                                          @RequestParam("date")
                                          @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
-        Integer freeSpots = locationService.getNumberOfAppointments(locationId, date);
-        return ResponseEntity.ok(freeSpots);
+        Integer occupiedSpots = locationService.getNumberOfAppointments(location.getId(), date);
+
+        return ResponseEntity.ok(location.getCapacity() - occupiedSpots);
     }
 }
