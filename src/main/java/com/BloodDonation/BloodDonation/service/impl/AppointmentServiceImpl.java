@@ -20,9 +20,9 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public Appointment createAppointment(Donor donor, Location location, String datetime) {
+    public Appointment createAppointment(Donor donor, Location location, String date) {
         Appointment newAppointment = new Appointment(
-                donor.uuid, location.getId(), datetime);
+                donor.uuid, location.getId(), date);
 
         return appointmentRepository.save(newAppointment);
 

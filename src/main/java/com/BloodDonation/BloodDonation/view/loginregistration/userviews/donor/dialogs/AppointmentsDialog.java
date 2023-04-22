@@ -62,27 +62,27 @@ public class AppointmentsDialog extends Dialog {
             locationGrid.deselectAll();
         });
 
-        appointmentGrid.addColumn(Appointment::getDatetime).setHeader("Appointment date");
+//        appointmentGrid.addColumn(Appointment::getDatetime).setHeader("Appointment date");
 
         appointments = appointmentService.getAppointmentsByDonor(donor);
         if(appointments != null)
             appointmentGrid.setItems(appointments);
 
-        deleteAppointmentButton.addClickListener( l -> {
-            Timestamp currentTime = Timestamp.from(Instant.now());
-            if(appointments != null && currentTime.before(appointmentGrid.asSingleSelect().getValue().getDatetime())) {
-                Appointment deletedAppointment = appointmentService.deleteAppointment(appointmentGrid.asSingleSelect().getValue());
-                appointments.remove(deletedAppointment);
-            } else {
-                notification.setText("Can't delete past appointments");
-                notification.setDuration(5000);
-                notification.open();
-            }
-//            if(appointments != null){
-//                appointmentGrid.setItems(appointments);
+//        deleteAppointmentButton.addClickListener( l -> {
+//            Timestamp currentTime = Timestamp.from(Instant.now());
+//            if(appointments != null && currentTime.before(appointmentGrid.asSingleSelect().getValue().getDatetime())) {
+//                Appointment deletedAppointment = appointmentService.deleteAppointment(appointmentGrid.asSingleSelect().getValue());
+//                appointments.remove(deletedAppointment);
+//            } else {
+//                notification.setText("Can't delete past appointments");
+//                notification.setDuration(5000);
+//                notification.open();
 //            }
-//            else appointmentGrid.dele
-        });
+////            if(appointments != null){
+////                appointmentGrid.setItems(appointments);
+////            }
+////            else appointmentGrid.dele
+//        });
 
         form.add(datetime, locationGrid, addAppointmentButton,
                 appointmentGrid, deleteAppointmentButton);

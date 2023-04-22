@@ -56,7 +56,7 @@ public class LocationsAppointmentsDialog extends Dialog {
             locationGrid.deselectAll();
         });
 
-        appointmentGrid.addColumn(Appointment::getDatetime).setHeader("Appointment date");
+//        appointmentGrid.addColumn(Appointment::getDatetime).setHeader("Appointment date");
         appointmentGrid.setItems(appointments);
 
         validateAppointmentButton.addClickListener( l -> {

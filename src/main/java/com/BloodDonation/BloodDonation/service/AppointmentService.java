@@ -8,7 +8,7 @@ import com.BloodDonation.BloodDonation.entity.Location;
 import java.util.ArrayList;
 
 public interface AppointmentService {
-    Appointment createAppointment(Donor donor, Location location, String datetime);
+    Appointment createAppointment(Donor donor, Location location, String date);
     Appointment addDoctorToAppointment(Appointment appointment, Doctor doctor);
 
     ArrayList<Appointment> getAppointmentsByDonor(Donor donor);
