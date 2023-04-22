@@ -38,7 +38,7 @@ public class EditAccountDialog extends Dialog {
             Donor newDonor = new Donor(email.getValue(),
                     password.getValue(), firstName.getValue(), lastName.getValue(),
                     bloodType.getValue(), "donor");
-            newDonor.uuid = donor.uuid;
+//            newDonor.uuid = donor.uuid;
             donorService.updateDonor(newDonor);
             notification.setText("Donor updated succesfully!");
             clearAll();

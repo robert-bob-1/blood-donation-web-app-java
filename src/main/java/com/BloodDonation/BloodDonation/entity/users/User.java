@@ -11,7 +11,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public UUID uuid;
+    public UUID id;
     public String email;
     public String password;
     public String firstName;
@@ -28,9 +28,6 @@ public class User {
         this.userType = userType;
     }
 
-    public UUID getUuid() {
-        return uuid;
-    }
 
     public String getEmail() {
         return email;
