@@ -3,8 +3,12 @@ package com.BloodDonation.BloodDonation.controller;
 import com.BloodDonation.BloodDonation.entity.Location;
 import com.BloodDonation.BloodDonation.entity.users.Doctor;
 import com.BloodDonation.BloodDonation.service.LocationService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/location")
@@ -29,5 +33,13 @@ public class LocationController {
     ResponseEntity<Location> addLocation(@RequestBody Location location){
         Location newLocation = locationService.addLocation(location);
         return ResponseEntity.ok(newLocation);
+    }
+
+    @GetMapping("/{locationId}/free-spots")
+    ResponseEntity<Integer> getFreeSpots(@PathVariable("locationId") UUID locationId,
+                                         @RequestParam("date")
+                                         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        Integer freeSpots = locationService.getNumberOfAppointments(locationId, date);
+        return ResponseEntity.ok(freeSpots);
     }
 }

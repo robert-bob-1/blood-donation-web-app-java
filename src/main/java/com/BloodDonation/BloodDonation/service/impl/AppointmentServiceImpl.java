@@ -9,7 +9,9 @@ import com.BloodDonation.BloodDonation.service.AppointmentService;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.UUID;
 
 @Service
 public class AppointmentServiceImpl implements AppointmentService {

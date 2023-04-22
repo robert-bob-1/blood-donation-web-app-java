@@ -4,6 +4,7 @@ import com.BloodDonation.BloodDonation.entity.Appointment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -15,4 +16,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, UUID> 
     void deleteByUserId(UUID uuid);
 
     ArrayList<Appointment> findByLocationId(UUID id);
+
+    Integer countByLocationIdAndDate(UUID locationId, LocalDate date);
 }

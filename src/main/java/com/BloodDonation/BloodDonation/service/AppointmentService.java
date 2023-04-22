@@ -5,7 +5,9 @@ import com.BloodDonation.BloodDonation.entity.users.Donor;
 import com.BloodDonation.BloodDonation.entity.Appointment;
 import com.BloodDonation.BloodDonation.entity.Location;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public interface AppointmentService {
     Appointment createAppointment(Donor donor, Location location, String date);
