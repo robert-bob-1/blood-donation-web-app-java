@@ -20,6 +20,7 @@ public class Location {
 
     @Column(name = "capacity")
     private int capacity;
+
     public UUID getId() {
         return id;
     }
