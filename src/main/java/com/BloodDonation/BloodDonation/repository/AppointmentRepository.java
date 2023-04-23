@@ -18,7 +18,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, UUID> 
 
     void deleteByDonor(UUID uuid);
 
-    ArrayList<Appointment> findByLocationId(UUID id);
+    Appointment[] findByLocationId(UUID id);
 
     Integer countByLocationIdAndDate(UUID locationId, LocalDate date);
 

@@ -3,13 +3,11 @@ package com.BloodDonation.BloodDonation.service.impl;
 import com.BloodDonation.BloodDonation.entity.Appointment;
 import com.BloodDonation.BloodDonation.entity.users.Doctor;
 import com.BloodDonation.BloodDonation.entity.users.Donor;
-import com.BloodDonation.BloodDonation.entity.Location;
 import com.BloodDonation.BloodDonation.repository.AppointmentRepository;
 import com.BloodDonation.BloodDonation.service.AppointmentService;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
 @Service
@@ -18,20 +16,6 @@ public class AppointmentServiceImpl implements AppointmentService {
 
     public AppointmentServiceImpl(AppointmentRepository appointmentRepository) {
         this.appointmentRepository = appointmentRepository;
-    }
-
-    @Override
-    public Appointment createAppointment(Donor donor, Location location, String date) {
-//        Appointment newAppointment = new Appointment(
-//                donor.id, location.getId(), date);
-//
-//        return appointmentRepository.save(newAppointment);
-        return null;
-    }
-
-    @Override
-    public Appointment addDoctorToAppointment(Appointment appointment, Doctor doctor) {
-        return null;
     }
 
     @Override
@@ -51,15 +35,15 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public ArrayList<Appointment> getAppointmentsByLocation(Location location) {
-        return appointmentRepository.findByLocationId(location.getId());
+    public Appointment[] getAppointmentsByLocation(UUID uuid) {
+        return appointmentRepository.findByLocationId(uuid);
     }
 
     @Override
-    public void validateAppointment(Appointment selectedAppointment, Doctor doctor) {
-        appointmentRepository.findById(selectedAppointment.getId())
-                .ifPresent(appointment -> {
-                    appointment.setDoctorId(doctor.getId());
+    public void updateAppointment(Appointment appointment) {
+        appointmentRepository.findById(appointment.getId())
+                .ifPresent(oldAppointment -> {
+                    oldAppointment.setDoctor(appointment.getDoctor());
 
                     appointmentRepository.save(appointment);
                 });
@@ -70,4 +54,5 @@ public class AppointmentServiceImpl implements AppointmentService {
         Appointment newAppointment = appointmentRepository.save(appointment);
         return newAppointment;
     }
+
 }

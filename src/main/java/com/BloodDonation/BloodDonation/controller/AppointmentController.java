@@ -24,10 +24,26 @@ public class AppointmentController {
     @GetMapping("/{donorId}")
     ResponseEntity<?> getAppointmentsByDonor(@PathVariable UUID donorId){
         Appointment[] foundAppointments = appointmentService.getAppointmentsByDonor(donorId);
-        for( int i = 0; i < foundAppointments.length; i++)
-            System.out.println(foundAppointments[i]);
         return ResponseEntity.ok(foundAppointments);
     }
+
+    @GetMapping("/location/{locationId}")
+    ResponseEntity<?> getAppointmentsAtLocation(@PathVariable UUID locationId){
+        Appointment[] foundAppointments = appointmentService.getAppointmentsByLocation(locationId);
+        return ResponseEntity.ok(foundAppointments);
+    }
+
+    @PutMapping("")
+    ResponseEntity<?> confirmAppointment(
+            @RequestBody Appointment appointment) {
+        try {
+            appointmentService.updateAppointment(appointment);
+            return ResponseEntity.ok("Validated appointment");
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.toString());
+        }
+    }
+
 
     @PostMapping("")
     ResponseEntity<Appointment> addAppointment(@RequestBody Appointment appointment){
