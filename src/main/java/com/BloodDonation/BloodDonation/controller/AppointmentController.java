@@ -2,7 +2,9 @@ package com.BloodDonation.BloodDonation.controller;
 
 import com.BloodDonation.BloodDonation.entity.Appointment;
 import com.BloodDonation.BloodDonation.service.AppointmentService;
+import org.atmosphere.config.service.Delete;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +21,12 @@ public class AppointmentController {
         this.appointmentService = appointmentService;
     }
 
-    @GetMapping("")
-    ResponseEntity<?> getAppointmentsByDonor(@RequestParam("donorId")UUID uuid){
-        return ResponseEntity.ok("No appointments for " + "uuid");
+    @GetMapping("/{donorId}")
+    ResponseEntity<?> getAppointmentsByDonor(@PathVariable UUID donorId){
+        Appointment[] foundAppointments = appointmentService.getAppointmentsByDonor(donorId);
+        for( int i = 0; i < foundAppointments.length; i++)
+            System.out.println(foundAppointments[i]);
+        return ResponseEntity.ok(foundAppointments);
     }
 
     @PostMapping("")
@@ -29,4 +34,12 @@ public class AppointmentController {
         Appointment newAppointment = appointmentService.addAppointment(appointment);
         return ResponseEntity.ok(newAppointment);
     }
+
+    @DeleteMapping("/{appointmentId}")
+    ResponseEntity<?> deleteAppointment(@PathVariable("appointmentId") UUID id){
+        appointmentService.deleteAppointment(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
 }

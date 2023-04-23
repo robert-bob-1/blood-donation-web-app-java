@@ -1,6 +1,7 @@
 package com.BloodDonation.BloodDonation.entity.users;
 
 import com.BloodDonation.BloodDonation.entity.Appointment;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotNull;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Entity(name = "Donor")
 @Table(name = "donor")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Donor extends User {
 
     @Size(max = 3)
@@ -19,7 +21,6 @@ public class Donor extends User {
     public String bloodType;
 
     @OneToMany(
-//            mappedBy = "donor",
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )

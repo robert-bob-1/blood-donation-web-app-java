@@ -9,7 +9,6 @@ import com.BloodDonation.BloodDonation.service.AppointmentService;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -36,20 +35,19 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public ArrayList<Appointment> getAppointmentsByDonor(Donor donor) {
-        return appointmentRepository.findByUserId(donor.id);
+    public Appointment[] getAppointmentsByDonor(UUID donor) {
+        return appointmentRepository.findByDonorId(donor);
     }
 
     @Override
-    public Appointment deleteAppointment(Appointment appointment) {
-        appointmentRepository.deleteById(appointment.getId());
-        return appointment;
+    public void deleteAppointment(UUID id) {
+        appointmentRepository.deleteById(id);
     }
 
     @Override
     @Transactional
     public void deleteByDonor(Donor donor) {
-        appointmentRepository.deleteByUserId(donor.id);
+        appointmentRepository.deleteByDonor(donor.id);
     }
 
     @Override

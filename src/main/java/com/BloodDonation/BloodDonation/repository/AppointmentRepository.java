@@ -14,9 +14,9 @@ import java.util.UUID;
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointment, UUID> {
 
-    ArrayList<Appointment> findByUserId(UUID uuid);
+    Appointment[] findByDonorId(UUID uuid);
 
-    void deleteByUserId(UUID uuid);
+    void deleteByDonor(UUID uuid);
 
     ArrayList<Appointment> findByLocationId(UUID id);
 
@@ -24,7 +24,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, UUID> 
 
     @Query("SELECT a.date, :locationCapacity - COUNT(a)"
             + "FROM Appointment a "
-            + "WHERE a.locationId = :locationId "
+            + "WHERE a.location.id = :locationId "
             + "GROUP BY a.date")
     List<Object[]> countAppointmentsByDateAndLocation(
             @Param("locationId") UUID locationId,

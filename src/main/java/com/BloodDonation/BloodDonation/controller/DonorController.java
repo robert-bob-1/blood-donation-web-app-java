@@ -49,7 +49,7 @@ public class DonorController {
     }
 
     @DeleteMapping("/{uuid}")
-    ResponseEntity<Donor> deleteDonor(@PathVariable("uuid") UUID uuid){
+    ResponseEntity<?> deleteDonor(@PathVariable("uuid") UUID uuid){
         donorService.deleteDonor(uuid);
         return new ResponseEntity<>(HttpStatus.OK);
     }
