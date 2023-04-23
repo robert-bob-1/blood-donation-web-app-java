@@ -4,6 +4,7 @@ import com.BloodDonation.BloodDonation.entity.Location;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public interface LocationService {
@@ -12,4 +13,6 @@ public interface LocationService {
     Location addLocation(Location location);
 
     Integer getNumberOfAppointments(UUID locationId, LocalDate date);
+
+    List<Object[]> getBusyDates(Location location);
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -34,6 +35,14 @@ public class LocationServiceImpl implements LocationService {
     @Override
     public Integer getNumberOfAppointments(UUID locationId, LocalDate date) {
         return appointmentRepository.countByLocationIdAndDate(locationId, date);
+    }
+
+    @Override
+    public List<Object[]> getBusyDates(Location location) {
+//        LocationBusyDates[] busyDates = appointmentRepository.countAppointmentsByDateAndLocation(location.getId(),location.getCapacity());
+        List<Object[]> busyDatesArrayList = appointmentRepository.countAppointmentsByDateAndLocation(location.getId(),location.getCapacity());
+//        System.out.println(Arrays.toString(busyDatesArrayList.get(0)));
+        return busyDatesArrayList;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.BloodDonation.BloodDonation.controller;
 
+import com.BloodDonation.BloodDonation.dto.LocationBusyDates;
 import com.BloodDonation.BloodDonation.entity.Location;
 import com.BloodDonation.BloodDonation.entity.users.Doctor;
 import com.BloodDonation.BloodDonation.service.LocationService;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -43,4 +45,12 @@ public class LocationController {
 
         return ResponseEntity.ok(location.getCapacity() - occupiedSpots);
     }
+
+    @PostMapping("/busy-dates")
+    ResponseEntity<List<Object[]>> getBusyDates(@RequestBody Location location) {
+        List<Object[]> busyDates = locationService.getBusyDates(location);
+//        System.out.println(busyDates.get(0)[1]);
+        return ResponseEntity.ok(busyDates);
+    }
+
 }
