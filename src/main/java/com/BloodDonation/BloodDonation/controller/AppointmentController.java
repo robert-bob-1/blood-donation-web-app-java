@@ -3,6 +3,10 @@ package com.BloodDonation.BloodDonation.controller;
 import com.BloodDonation.BloodDonation.entity.Appointment;
 import com.BloodDonation.BloodDonation.service.AppointmentService;
 import org.atmosphere.config.service.Delete;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +35,14 @@ public class AppointmentController {
     ResponseEntity<?> getAppointmentsAtLocation(@PathVariable UUID locationId){
         Appointment[] foundAppointments = appointmentService.getAppointmentsByLocation(locationId);
         return ResponseEntity.ok(foundAppointments);
+    }
+
+    @GetMapping("/paginated")
+    Page<Appointment> getAppointmentsPaginated(@RequestParam(defaultValue = "0") int page,
+                                               @RequestParam(defaultValue = "10") int size){
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Appointment> foundAppointments = appointmentService.getAppointments(pageable);
+        return foundAppointments;
     }
 
     @PutMapping("")

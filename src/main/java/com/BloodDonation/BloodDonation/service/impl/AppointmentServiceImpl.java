@@ -1,11 +1,12 @@
 package com.BloodDonation.BloodDonation.service.impl;
 
 import com.BloodDonation.BloodDonation.entity.Appointment;
-import com.BloodDonation.BloodDonation.entity.users.Doctor;
 import com.BloodDonation.BloodDonation.entity.users.Donor;
 import com.BloodDonation.BloodDonation.repository.AppointmentRepository;
 import com.BloodDonation.BloodDonation.service.AppointmentService;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -37,6 +38,11 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public Appointment[] getAppointmentsByLocation(UUID uuid) {
         return appointmentRepository.findByLocationId(uuid);
+    }
+
+    @Override
+    public Page<Appointment> getAppointments(Pageable pageable) {
+        return appointmentRepository.findAll(pageable);
     }
 
     @Override

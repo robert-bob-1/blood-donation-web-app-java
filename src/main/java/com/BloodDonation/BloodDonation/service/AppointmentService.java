@@ -1,8 +1,9 @@
 package com.BloodDonation.BloodDonation.service;
 
-import com.BloodDonation.BloodDonation.entity.users.Doctor;
 import com.BloodDonation.BloodDonation.entity.users.Donor;
 import com.BloodDonation.BloodDonation.entity.Appointment;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.UUID;
 
@@ -13,6 +14,8 @@ public interface AppointmentService {
     void deleteByDonor(Donor donor);
 
     Appointment[] getAppointmentsByLocation(UUID uuid);
+
+    Page<Appointment> getAppointments(Pageable pageable);
 
     void updateAppointment(Appointment appointment);
     Appointment addAppointment(Appointment appointment);
