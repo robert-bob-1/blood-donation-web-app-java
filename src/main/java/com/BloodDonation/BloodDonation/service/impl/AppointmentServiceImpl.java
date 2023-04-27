@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Service
@@ -41,6 +42,11 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
+    public Appointment[] getAppointmentsToday() {
+        return appointmentRepository.findByDate(LocalDate.now());
+    }
+
+    @Override
     public Page<Appointment> getAppointments(Pageable pageable) {
         return appointmentRepository.findAll(pageable);
     }
@@ -60,5 +66,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         Appointment newAppointment = appointmentRepository.save(appointment);
         return newAppointment;
     }
+
+
 
 }

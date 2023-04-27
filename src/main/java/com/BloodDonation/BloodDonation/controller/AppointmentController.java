@@ -45,6 +45,12 @@ public class AppointmentController {
         return foundAppointments;
     }
 
+    @GetMapping("/today")
+    ResponseEntity<?> getAppointmentsToday(){
+        Appointment[] foundAppointments = appointmentService.getAppointmentsToday();
+        return ResponseEntity.ok(foundAppointments);
+    }
+
     @PutMapping("")
     ResponseEntity<?> confirmAppointment(
             @RequestBody Appointment appointment) {

@@ -15,8 +15,11 @@ public interface AppointmentService {
 
     Appointment[] getAppointmentsByLocation(UUID uuid);
 
+    Appointment[] getAppointmentsToday();
+
     Page<Appointment> getAppointments(Pageable pageable);
 
     void updateAppointment(Appointment appointment);
     Appointment addAppointment(Appointment appointment);
+
 }
