@@ -18,7 +18,10 @@ public class DonorServiceImpl implements DonorService {
 
     @Override
     public Donor registerDonor(Donor donor) {
-        Donor savedDonor = donorRepository.save(donor);
+        Donor existingDonor = donorRepository.findByEmail(donor.email).get();
+        Donor savedDonor = null;
+        if(existingDonor == null)
+            savedDonor = donorRepository.save(donor);
         return savedDonor;
     }
 
@@ -37,6 +40,8 @@ public class DonorServiceImpl implements DonorService {
                     donor.password = newDonor.password;
                     donor.firstName = newDonor.firstName;
                     donor.lastName = newDonor.lastName;
+                    donor.setSmsNotification(newDonor.getSmsNotification());
+                    donor.setEmailNotification(newDonor.getEmailNotification());
 
                     donorRepository.save(donor);
                 });

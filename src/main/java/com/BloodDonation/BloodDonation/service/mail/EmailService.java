@@ -4,6 +4,7 @@ import com.BloodDonation.BloodDonation.entity.Appointment;
 import com.BloodDonation.BloodDonation.entity.users.Donor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,7 +18,7 @@ public class EmailService {
 
     public void sendAppointmentConfirmation(Appointment appointment) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("robert.bob.1709@gmail.com");
+        message.setFrom(((JavaMailSenderImpl)emailSender).getUsername());
         message.setTo(appointment.getDonor().getEmail());
         message.setSubject("Appointment confirmation");
         StringBuilder textBuilder = new StringBuilder();
