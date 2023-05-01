@@ -4,9 +4,11 @@ import com.BloodDonation.BloodDonation.entity.Appointment;
 import com.BloodDonation.BloodDonation.entity.users.Donor;
 import com.BloodDonation.BloodDonation.repository.AppointmentRepository;
 import com.BloodDonation.BloodDonation.service.AppointmentService;
+import com.BloodDonation.BloodDonation.service.mail.EmailService;
 import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -15,9 +17,10 @@ import java.util.UUID;
 @Service
 public class AppointmentServiceImpl implements AppointmentService {
     private final AppointmentRepository appointmentRepository;
-
-    public AppointmentServiceImpl(AppointmentRepository appointmentRepository) {
+    private final EmailService emailService;
+    public AppointmentServiceImpl(AppointmentRepository appointmentRepository, EmailService emailService) {
         this.appointmentRepository = appointmentRepository;
+        this.emailService = emailService;
     }
 
     @Override
@@ -64,8 +67,10 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public Appointment addAppointment(Appointment appointment) {
         Appointment newAppointment = appointmentRepository.save(appointment);
+        emailService.sendAppointmentConfirmation(newAppointment);
         return newAppointment;
     }
+
 
 
 
