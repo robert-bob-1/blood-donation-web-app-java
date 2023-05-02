@@ -2,6 +2,7 @@ package com.BloodDonation.BloodDonation.entity.users;
 
 import com.BloodDonation.BloodDonation.entity.Appointment;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -24,6 +25,7 @@ public class Donor extends User {
     @NotNull
     public String bloodType;
 
+    @JsonManagedReference
     @OneToMany(
             cascade = CascadeType.ALL,
             orphanRemoval = true
