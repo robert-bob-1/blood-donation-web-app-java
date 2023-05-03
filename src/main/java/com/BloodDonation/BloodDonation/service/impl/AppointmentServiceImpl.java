@@ -75,7 +75,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         return newAppointment;
     }
 
-    @Scheduled(cron = "0 23 19 * * *", zone="Europe/Bucharest")
+    @Scheduled(cron = "0 41 20 * * *", zone="Europe/Bucharest")
     @Async
     protected void sendAppointmentReminders() {
         System.out.println("appointment reminders");
