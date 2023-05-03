@@ -47,12 +47,6 @@ public class LocationController {
     @PostMapping("/busy-dates")
     ResponseEntity<List<Object[]>> getBusyDates(@RequestBody Location location) {
         List<Object[]> busyDates = locationService.getBusyDates(location);
-////        System.out.println(busyDates.get(0)[1]);
-//        LocationBusyDate
-//        for (LocationBusyDate busyDate :
-//             ) {
-//
-//        }
         return ResponseEntity.ok(busyDates);
     }
 

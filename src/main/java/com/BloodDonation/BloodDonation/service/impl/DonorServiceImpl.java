@@ -40,6 +40,7 @@ public class DonorServiceImpl implements DonorService {
                     donor.password = newDonor.password;
                     donor.firstName = newDonor.firstName;
                     donor.lastName = newDonor.lastName;
+                    donor.setPhoneNumber(newDonor.getPhoneNumber());
                     donor.setSmsNotification(newDonor.getSmsNotification());
                     donor.setEmailNotification(newDonor.getEmailNotification());
 

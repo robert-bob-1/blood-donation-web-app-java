@@ -75,7 +75,7 @@ public class AppointmentServiceImpl implements AppointmentService {
         return newAppointment;
     }
 
-    @Scheduled(cron = "0 41 20 * * *", zone="Europe/Bucharest")
+    @Scheduled(cron = "0 53 21 * * *", zone="Europe/Bucharest")
     @Async
     protected void sendAppointmentReminders() {
         System.out.println("appointment reminders");
@@ -86,7 +86,7 @@ public class AppointmentServiceImpl implements AppointmentService {
             if (donor.getEmailNotification() == 1) {
                 emailService.sendAppointmentReminder(appointment);
             } if (donor.getSmsNotification() == 1) {
-//                smsService.sendAppointmentReminder(appointment);
+                smsService.sendAppointmentReminder(appointment);
             }
         }
     }
