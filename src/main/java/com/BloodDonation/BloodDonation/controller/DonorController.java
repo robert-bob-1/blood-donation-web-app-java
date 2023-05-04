@@ -31,21 +31,21 @@ public class DonorController {
     }
 
     @GetMapping("/{email}")
-    ResponseEntity<?> getDonor(@PathVariable("email") String email){
+    ResponseEntity<Donor> getDonor(@PathVariable("email") String email){
         Donor foundDonor = donorService.getDonorByEmail(email);
         if (foundDonor != null)
             return ResponseEntity.ok(foundDonor);
         else
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return (ResponseEntity<Donor>) ResponseEntity.notFound();
     }
 
     @PutMapping("")
-    ResponseEntity<?> updateDonor(@RequestBody Donor donor){
+    ResponseEntity<Donor> updateDonor(@RequestBody Donor donor){
         Donor updatedDonor = donorService.updateDonor(donor);
         if (updatedDonor != null)
             return ResponseEntity.ok(updatedDonor);
         else
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return (ResponseEntity<Donor>) ResponseEntity.notFound();
     }
 
     @DeleteMapping("/{uuid}")
