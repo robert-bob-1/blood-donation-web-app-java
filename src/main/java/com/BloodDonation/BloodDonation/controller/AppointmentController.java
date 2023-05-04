@@ -27,8 +27,12 @@ public class AppointmentController {
 
     @GetMapping("/{donorId}")
     ResponseEntity<?> getAppointmentsByDonor(@PathVariable UUID donorId){
-        Appointment[] foundAppointments = appointmentService.getAppointmentsByDonor(donorId);
-        return ResponseEntity.ok(foundAppointments);
+        try {
+            Appointment[] foundAppointments = appointmentService.getAppointmentsByDonor(donorId);
+            return ResponseEntity.ok(foundAppointments);
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.toString());
+        }
     }
 
     @GetMapping("/location/{locationId}")
@@ -47,8 +51,12 @@ public class AppointmentController {
 
     @GetMapping("/today")
     ResponseEntity<?> getAppointmentsToday(){
-        Appointment[] foundAppointments = appointmentService.getAppointmentsToday();
-        return ResponseEntity.ok(foundAppointments);
+        try {
+            Appointment[] foundAppointments = appointmentService.getAppointmentsToday();
+            return ResponseEntity.ok(foundAppointments);
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.toString());
+        }
     }
 
     @PutMapping("")
@@ -64,14 +72,22 @@ public class AppointmentController {
 
 
     @PostMapping("")
-    ResponseEntity<Appointment> addAppointment(@RequestBody Appointment appointment){
-        Appointment newAppointment = appointmentService.addAppointment(appointment);
-        return ResponseEntity.ok(newAppointment);
+    ResponseEntity<?> addAppointment(@RequestBody Appointment appointment){
+        try {
+            Appointment newAppointment = appointmentService.addAppointment(appointment);
+            return ResponseEntity.ok(newAppointment);
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.toString());
+        }
     }
 
     @DeleteMapping("/{appointmentId}")
     ResponseEntity<?> deleteAppointment(@PathVariable("appointmentId") UUID id){
-        appointmentService.deleteAppointment(id);
+        try {
+            appointmentService.deleteAppointment(id);
+        } catch (Exception e){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.toString());
+        }
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

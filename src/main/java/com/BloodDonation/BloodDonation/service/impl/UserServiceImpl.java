@@ -41,18 +41,13 @@ public class UserServiceImpl implements UserService {
         if(foundUser.isPresent())
             return userMapper.toUserDTO(foundUser.get());
         else
-                throw new InvalidParameterException("There is no user with id " + uuid);
+            throw new InvalidParameterException("There is no user with id " + uuid);
     }
 
     @Override
     public User getUserByEmail(String email) {
         Optional<User> foundUser = userRepository.findByEmail(email);
         return foundUser.orElse(null);
-//        Optional<User> foundUser = userRepository.findByEmail(email);
-//        if(foundUser.isPresent())
-//            return userMapper.toUserDTO(foundUser.get());
-//        else
-//            return null;
     }
 
     @Override
