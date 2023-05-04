@@ -20,11 +20,10 @@ public class SmsService implements NotificationService {
 
     @Override
     public void sendAppointmentReminder(Appointment appointment) {
-
         SmsApi apiInstance = new SmsApi(clickSendConfig);
         SmsMessage smsMessage1 = new SmsMessage();
-        smsMessage1.body(buildReminderMessage(appointment));
-        smsMessage1.to(appointment.getDonor().getPhoneNumber());
+        smsMessage1.body("Test SMS 1");
+        smsMessage1.to("+40731727640");
         smsMessage1.source("Java");
         List<SmsMessage> smsMessageList = Arrays.asList(smsMessage1);
         SmsMessageCollection smsMessages = new SmsMessageCollection();
@@ -36,15 +35,5 @@ public class SmsService implements NotificationService {
             System.err.println("Exception when calling SmsApi#smsSendPost");
             e.printStackTrace();
         }
-    }
-
-    private String buildReminderMessage(Appointment appointment) {
-        StringBuilder textBuilder = new StringBuilder();
-        textBuilder.append("Dear " + appointment.getDonor().firstName+"\n");
-        textBuilder.append("\tYou have an appointment due tommorrow:\n");
-        textBuilder.append("Date: " + appointment.getDate().toString() + "\n");
-        textBuilder.append("Time: " + appointment.getTime().toString() + "\n");
-        textBuilder.append("Location: " + appointment.getLocation().getName() + "\n");
-        return textBuilder.toString();
     }
 }

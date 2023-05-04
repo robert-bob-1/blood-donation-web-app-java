@@ -33,11 +33,10 @@ public class UserController {
     ResponseEntity<?> loginUser(@PathVariable("email") String email,
                                    @PathVariable("password") String password){
         User foundUser = userService.loginUser(email, password);
-        System.out.println(foundUser.toString());
-//        if (foundUser != null)
+        if (foundUser != null)
             return ResponseEntity.ok(foundUser);
-//        else
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        else
+            return (ResponseEntity<User>) ResponseEntity.notFound();
     }
     @GetMapping("/{email}")
     ResponseEntity<?> getUserByEmail(@PathVariable("email") String email){
@@ -45,7 +44,7 @@ public class UserController {
         if (foundUser != null)
             return ResponseEntity.ok(foundUser);
         else
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return (ResponseEntity<User>) ResponseEntity.notFound();
     }
 
     @PutMapping("")
@@ -54,6 +53,6 @@ public class UserController {
         if (updatedUser != null)
             return ResponseEntity.ok(updatedUser);
         else
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return (ResponseEntity<User>) ResponseEntity.notFound();
     }
 }
