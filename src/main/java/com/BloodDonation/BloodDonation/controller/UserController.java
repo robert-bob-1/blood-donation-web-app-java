@@ -30,49 +30,30 @@ public class UserController {
     }
 
     @GetMapping("/{email}/{password}")
-    ResponseEntity<User> loginUser(@PathVariable("email") String email,
+    ResponseEntity<?> loginUser(@PathVariable("email") String email,
                                    @PathVariable("password") String password){
         User foundUser = userService.loginUser(email, password);
-        if (foundUser != null)
+        System.out.println(foundUser.toString());
+//        if (foundUser != null)
             return ResponseEntity.ok(foundUser);
-        else
-            return (ResponseEntity<User>) ResponseEntity.notFound();
+//        else
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
     @GetMapping("/{email}")
-    ResponseEntity<User> getUserByEmail(@PathVariable("email") String email){
+    ResponseEntity<?> getUserByEmail(@PathVariable("email") String email){
         User foundUser = userService.getUserByEmail(email);
         if (foundUser != null)
             return ResponseEntity.ok(foundUser);
         else
-            return (ResponseEntity<User>) ResponseEntity.notFound();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PutMapping("")
-    ResponseEntity<User> updateUser(@RequestBody User user){
+    ResponseEntity<?> updateUser(@RequestBody User user){
         User updatedUser = userService.updateUser(user);
         if (updatedUser != null)
             return ResponseEntity.ok(updatedUser);
         else
-            return (ResponseEntity<User>) ResponseEntity.notFound();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
-//    @DeleteMapping("/delete/{uuid}")
-//    ResponseEntity<User> deleteUser(@PathVariable("uuid") UUID uuid){
-//        User foundUser = userService.deleteById(email);
-//        if (foundUser != null)
-//            return ResponseEntity.ok(foundUser);
-//        else
-//            return (ResponseEntity<User>) ResponseEntity.notFound();
-//    }
-//    @GetMapping("/{id}")
-//    ResponseEntity<?> getUserById(@PathVariable("id") UUID id){
-//        try {
-//            UserDTO foundUser = userService.getUserById(id);
-//            return ResponseEntity.ok(foundUser);
-//        }
-//        catch (InvalidParameterException e){
-//            return ResponseEntity.badRequest().body(e.getMessage());
-//        }
-//    }
-
 }

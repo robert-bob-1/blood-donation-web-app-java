@@ -14,7 +14,10 @@ public class DonorMapper {
         donor.firstName = dto.firstName;
         donor.lastName = dto.lastName;
         donor.userType = "donor";
+        donor.setPhoneNumber(dto.phoneNumber);
         donor.bloodType = dto.bloodType;
+        donor.setSmsNotification(dto.smsNotification);
+        donor.setEmailNotification(dto.emailNotification);
 
         return donor;
     }
