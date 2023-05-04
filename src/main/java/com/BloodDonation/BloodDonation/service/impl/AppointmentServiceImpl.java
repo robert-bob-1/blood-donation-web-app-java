@@ -75,13 +75,15 @@ public class AppointmentServiceImpl implements AppointmentService {
         return newAppointment;
     }
 
-    @Scheduled(cron = "0 23 19 * * *", zone="Europe/Bucharest")
+    @Scheduled(cron = "0 1 19 * * *", zone="Europe/Bucharest")
     @Async
     protected void sendAppointmentReminders() {
         System.out.println("appointment reminders");
         Appointment[] appointments = appointmentRepository.findByDate(LocalDate.now().plusDays(1));
+//        HashMap<Appointment, ArrayList<NotificationService>> appointmentServices = new HashMap<>();
 
         for (Appointment appointment : appointments) {
+//            ArrayList<NotificationService> services =
             Donor donor = appointment.getDonor();
             if (donor.getEmailNotification() == 1) {
                 emailService.sendAppointmentReminder(appointment);
