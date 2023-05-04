@@ -36,5 +36,4 @@ public class Donor extends User {
     private int smsNotification;
     @Column(name="email_notification", nullable = false)
     private int emailNotification;
-    private String phoneNumber;
 }

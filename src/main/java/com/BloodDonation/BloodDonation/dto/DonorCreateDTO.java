@@ -5,7 +5,6 @@ public class DonorCreateDTO {
     public String password;
     public String firstName;
     public String lastName;
-    public String phoneNumber;
     public String bloodType;
     public int smsNotification;
     public int emailNotification;
