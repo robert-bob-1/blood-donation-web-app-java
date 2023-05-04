@@ -15,8 +15,6 @@ public class DonorMapper {
         donor.lastName = dto.lastName;
         donor.userType = "donor";
         donor.bloodType = dto.bloodType;
-        donor.setSmsNotification(dto.smsNotification);
-        donor.setEmailNotification(dto.emailNotification);
 
         return donor;
     }
