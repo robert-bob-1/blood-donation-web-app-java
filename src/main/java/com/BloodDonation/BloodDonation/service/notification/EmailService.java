@@ -1,23 +1,31 @@
 package com.BloodDonation.BloodDonation.service.notification;
 
 import com.BloodDonation.BloodDonation.entity.Appointment;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
-public class EmailService implements NotificationService{
+@Component
+public class EmailService extends NotificationDecorator{
 
-    private final JavaMailSender emailSender;
-
-    public EmailService(JavaMailSender emailSender) {
+    private JavaMailSender emailSender;
+    @Autowired
+    public void setEmailSender(JavaMailSender javaMailSender) {
         this.emailSender = emailSender;
+    }
+    private Appointment appointment;
+    public EmailService (NotificationService service, Appointment appointment) {
+        super(service);
+        this.appointment = appointment;
     }
 
     @Async
-    public void sendAppointmentConfirmation(Appointment appointment) {
+    @Override
+    public void sendAppointmentConfirmation() {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(((JavaMailSenderImpl)emailSender).getUsername());
         message.setTo(appointment.getDonor().getEmail());
@@ -34,7 +42,8 @@ public class EmailService implements NotificationService{
     }
 
     @Override
-    public void sendAppointmentReminder(Appointment appointment) {
+    public void sendAppointmentReminder() {
+        System.out.println("sending email reminder");
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(((JavaMailSenderImpl)emailSender).getUsername());
         message.setTo(appointment.getDonor().getEmail());

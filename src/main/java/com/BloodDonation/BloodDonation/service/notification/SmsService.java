@@ -7,20 +7,36 @@ import ClickSend.Model.SmsMessage;
 import ClickSend.Model.SmsMessageCollection;
 import com.BloodDonation.BloodDonation.entity.Appointment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
 
-@Service
-public class SmsService implements NotificationService {
+@Component
+public class SmsService extends NotificationDecorator {
 
-    @Autowired
+//    @Autowired
     private ApiClient clickSendConfig;
+    @Autowired
+    public void setClickSendConfig(ApiClient apiClient) {
+        this.clickSendConfig = apiClient;
+    }
+    private Appointment appointment;
+    public SmsService (NotificationService service, Appointment appointment) {
+        super(service);
+        this.appointment = appointment;
+    }
 
     @Override
-    public void sendAppointmentReminder(Appointment appointment) {
+    public void sendAppointmentConfirmation() {
+        System.out.println("sending appointment confirmation sms");
+    }
 
+    @Override
+    public void sendAppointmentReminder() {
         SmsApi apiInstance = new SmsApi(clickSendConfig);
         SmsMessage smsMessage1 = new SmsMessage();
         smsMessage1.body(buildReminderMessage(appointment));
