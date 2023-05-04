@@ -35,7 +35,7 @@ public class SmsService implements NotificationService {
         } catch (ApiException e) {
             System.err.println("Exception when calling SmsApi#smsSendPost");
             e.printStackTrace();
-        }
+        }//
     }
 
     private String buildReminderMessage(Appointment appointment) {
